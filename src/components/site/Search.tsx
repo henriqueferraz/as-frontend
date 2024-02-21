@@ -1,35 +1,29 @@
 "use client"
 
 import { SearchResult } from "@/types/SearchResult"
-import { SearchForm } from "@/components/site/SearchForm"
 import { useState } from "react"
-import * as api from '@/api/site'
+import { SearchForm } from "./SearchForm"
 import { SearchRaveal } from "./SearchRaveal"
+
+import * as api from '@/api/site'
 
 type Props = {
     id: number
 }
-
 export const Search = ({ id }: Props) => {
 
     const [results, setResults] = useState<SearchResult>()
-    const [loading, setLoading] = useState(false)
 
     const handleSearchButton = async (cpf: string) => {
         if (!cpf) return
-        setLoading(true)
-        const result = await api.searchCPF(id, cpf)
-        setLoading(false)
-        if (!result) return alert('CPF não encontrado!')
-        setResults(result)
+        const json = await api.searchCPF(id, cpf)
+        if (!json) return alert('CPF não encontrado')
+        setResults(json)
     }
 
     return (
         <section className=" bg-gray-900 p-5 rounded">
-            {!results && <SearchForm
-                onSearchButton={handleSearchButton}
-                loading={loading}
-            />}
+            {!results && <SearchForm onSearchButton={handleSearchButton} />}
             {results && <SearchRaveal results={results} />}
         </section>
     )

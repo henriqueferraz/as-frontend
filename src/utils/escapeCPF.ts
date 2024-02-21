@@ -1,3 +1,3 @@
 export const escapeCPF = (cpf: string) => {
-    return cpf.replace(/\.|-|,/gm, '')
+    return cpf.replace(/\.|-|,|_/gm, '')
 }

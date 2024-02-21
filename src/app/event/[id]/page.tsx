@@ -1,5 +1,6 @@
 import * as api from '@/api/site'
 import { Search } from '@/components/site/Search'
+
 import { redirect } from 'next/navigation'
 type Props = {
     params: {
@@ -20,7 +21,9 @@ const Page = async ({ params }: Props) => {
                 <p className=" text-sm mb-5">{eventItem.description}</p>
             </header>
             <Search id={eventItem.id} />
-            <footer className=" italic text-justify mt-2 text-sm">HFerraz</footer>
+            <footer className=" italic text-justify mt-2 text-sm">
+                HFerraz
+                <a href="https://www.digitalocean.com/?refcode=d6ffb502f75f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" /></a></footer>
         </main>
     )
 }
